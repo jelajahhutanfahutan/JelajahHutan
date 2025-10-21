@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jelajah Hutan 2025</title>
+
+  <!-- FONT + ICONS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ========== CSS VARIABLES ========== */
+    :root {
+      --bg-deep: #0b3d20;
+      --forest: #1b773f;
+      --leaf: #93d17c;
+      --earth: #7b4f2f;
+      --gold: #f4d03f;
+      --muted: #ecf6ea;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(2,20,8,0.45);
+      --radius: 18px;
+    }
+
+    /* ========== RESET & BASE ========== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%; 
+      font-family: 'Poppins', sans-serif; 
+      line-height: 1.6; 
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(180deg, #0a2818 0%, #0b3d20 30%, #0c3d23 70%, #072412 100%);
+      color: var(--muted);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(147,209,124,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(27,119,63,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100%;
+      z-index: 1200;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(7,36,18,0.95), rgba(7,36,18,0.85));
+      border-bottom: 1px solid rgba(147,209,124,0.1);
+      padding: 14px 24px;
+      display: flex; 
+      align-items: center; 
+      gap: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Menu Toggle Button */
+    .menu-toggle {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, rgba(147,209,124,0.1), rgba(27,119,63,0.1));
+      border: 2px solid var(--leaf);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 10px;
+    }
+
+    .menu-toggle:hover {
+      background: linear-gradient(135deg, rgba(147,209,124,0.2), rgba(27,119,63,0.15));
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(147,209,124,0.3);
+    }
+
+    .menu-toggle span {
+      width: 26px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Side Menu */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 320px;
+      height: 100vh;
+      background: linear-gradient(180deg, #0a2818 0%, var(--bg-deep) 50%, #072412 100%);
+      box-shadow: 4px 0 30px rgba(0,0,0,0.6);
+      transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 1300;
+      padding: 90px 24px 24px;
+      overflow-y: auto;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1250;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-menu nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-menu nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 18px 22px;
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-left: 4px solid transparent;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .side-menu nav a:hover {
+      background: linear-gradient(90deg, rgba(147,209,124,0.15), rgba(27,119,63,0.1));
+      color: var(--gold);
+      border-left-color: var(--gold);
+      transform: translateX(8px);
+      box-shadow: 0 4px 15px rgba(147,209,124,0.2);
+    }
+
+    .side-menu nav a i {
+      font-size: 22px;
+      width: 28px;
+      color: var(--leaf);
+    }
+
+    .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 14px; 
+    }
+
+    .brand .logo { 
+      width: 68px; 
+      height: 68px; 
+      border-radius: 14px; 
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .brand .logo:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .brand h1 { 
+      font-size: 19px; 
+      color: var(--gold); 
+      margin: 0; 
+      font-weight: 800; 
+      letter-spacing: 1.2px;
+      text-align: left;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    .brand p { 
+      margin: 0; 
+      font-size: 13px; 
+      color: rgba(255,255,255,0.85);
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .header-right { 
+      margin-left: auto; 
+      display: flex; 
+      gap: 10px; 
+      align-items: center; 
+    }
+
+    .extra-logos { 
+      display: flex; 
+      gap: 10px; 
+      align-items: center; 
+    }
+
+    .extra-logos .logo-box { 
+      width: 62px; 
+      height: 62px; 
+      border-radius: 50%; 
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .extra-logos .logo-box:hover { 
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 8px 25px rgba(147,209,124,0.4);
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 6vw 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at center top, rgba(147,209,124,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(27,119,63,0.06) 0%, transparent 40%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 950px;
+    }
+
+    .hero-logo {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 35px;
+      border-radius: 35px;
+      box-shadow: 
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 40px rgba(147,209,124,0.2);
+      animation: float 3s ease-in-out infinite;
+      overflow: hidden;
+      border: 3px solid rgba(147,209,124,0.2);
+    }
+
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-25px); }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      color: var(--gold);
+      margin: 0 0 18px;
+      font-weight: 800;
+      text-shadow: 
+        0 8px 32px rgba(0,0,0,0.6),
+        0 0 30px rgba(244,208,63,0.3);
+      line-height: 1.15;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 span {
+      color: var(--muted);
+      display: block;
+      margin-top: 12px;
+    }
+
+    .hero p {
+      font-size: clamp(17px, 2vw, 21px);
+      color: rgba(236,246,234,0.95);
+      margin-bottom: 35px;
+      line-height: 1.9;
+      max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-quote {
+      background: linear-gradient(135deg, rgba(147,209,124,0.08), rgba(27,119,63,0.05));
+      border-left: 5px solid var(--gold);
+      padding: 25px 35px;
+      margin: 45px auto;
+      max-width: 850px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .hero-quote p {
+      font-size: 17px;
+      font-style: italic;
+      color: var(--muted);
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+
+    .scroll-indicator {
+      margin-top: 50px;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    .scroll-indicator i {
+      font-size: 36px;
+      color: var(--gold);
+      filter: drop-shadow(0 4px 10px rgba(244,208,63,0.4));
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-25px); }
+      60% { transform: translateY(-12px); }
+    }
+
+    /* ========== SECTION STYLES ========== */
+    section {
+      padding: 80px 6vw;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      color: var(--gold);
+      margin: 0 0 16px;
+      font-weight: 800;
+      text-shadow: 
+        0 6px 24px rgba(0,0,0,0.4),
+        0 0 30px rgba(244,208,63,0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .section-title p {
+      font-size: 18px;
+      color: rgba(236,246,234,0.85);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    /* ========== ABOUT SECTION ========== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .about-card {
+      background: linear-gradient(135deg, rgba(147,209,124,0.12), rgba(27,119,63,0.08));
+      border: 2px solid rgba(147,209,124,0.2);
+      border-radius: 28px;
+      padding: 45px 35px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(147,209,124,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .about-card:hover::before {
+      opacity: 1;
+    }
+
+    .about-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+      border-color: var(--leaf);
+    }
+
+    .about-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 25px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease;
+      border: 3px solid rgba(147,209,124,0.3);
+    }
+
+    .about-card:hover .about-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .about-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-card h3 {
+      color: var(--gold);
+      font-size: 26px;
+      margin: 0 0 18px;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    .about-card p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ========== NILAI SECTION ========== */
+    #nilai {
+      background: linear-gradient(180deg, transparent 0%, rgba(11,61,32,0.3) 50%, transparent 100%);
+    }
+
+    .nilai-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nilai-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 2px solid rgba(147,209,124,0.15);
+      border-radius: 22px;
+      padding: 35px 28px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nilai-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .nilai-card:hover::before {
+      opacity: 0.12;
+    }
+
+    .nilai-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      border-color: var(--leaf);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .nilai-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nilai-number {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 18px;
+      background: linear-gradient(135deg, var(--gold), #e5bd2f);
+      color: var(--bg-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      box-shadow: 0 6px 20px rgba(244,208,63,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .nilai-card:hover .nilai-number {
+      transform: scale(1.15) rotate(360deg);
+    }
+
+    .nilai-card h4 {
+      color: var(--gold);
+      font-size: 20px;
+      margin: 0 0 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nilai-card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ========== ACARA SECTION ========== */
+    .acara-card {
+      max-width: 700px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(147,209,124,0.15), rgba(27,119,63,0.1));
+      border: 4px solid var(--gold);
+      border-radius: 35px;
+      padding: 55px 45px;
+      text-align: center;
+      box-shadow: 0 25px 90px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .acara-card::before {
+      content: '🌿';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      font-size: 150px;
+      opacity: 0.08;
+    }
+
+    .acara-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), #e5bd2f);
+      color: var(--bg-deep);
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      letter-spacing: 1.2px;
+      box-shadow: 0 6px 20px rgba(244,208,63,0.4);
+    }
+
+    .acara-card h3 {
+      font-size: clamp(32px, 5vw, 48px);
+      color: var(--gold);
+      margin: 0 0 20px;
+      font-weight: 800;
+      text-shadow: 
+        0 6px 24px rgba(0,0,0,0.5),
+        0 0 30px rgba(244,208,63,0.3);
+      letter-spacing: 1px;
+    }
+
+    .acara-date {
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-weight: 600;
+    }
+
+    .acara-date i {
+      color: var(--gold);
+      font-size: 24px;
+    }
+
+    .countdown-mini {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin: 35px 0;
+    }
+
+    .countdown-box {
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 3px solid var(--leaf);
+      border-radius: 18px;
+      padding: 20px 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .countdown-box:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .countdown-box .number {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+      text-shadow: 
+        0 4px 12px rgba(0,0,0,0.4),
+        0 0 20px rgba(244,208,63,0.3);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .countdown-box .label {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+    }
+
+    .acara-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      color: var(--bg-deep);
+      padding: 18px 45px;
+      border-radius: 18px;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 35px rgba(147,209,124,0.35);
+      margin-top: 15px;
+    }
+
+    .acara-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 18px 45px rgba(147,209,124,0.5);
+    }
+
+    /* ========== MERCHANDISE SECTION ========== */
+    #merchandise {
+      padding: 80px 6vw;
+      background: linear-gradient(180deg, transparent 0%, rgba(147,209,124,0.05) 50%, transparent 100%);
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 35px;
+      max-width: 1300px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+
+    .merch-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
+      border-radius: 25px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 280px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+      border: 2px solid rgba(147,209,124,0.15);
+    }
+
+    .merch-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 65px rgba(0,0,0,0.45);
+      border-color: var(--leaf);
+    }
+
+    .merch-image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .merch-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(11,61,32,0.3) 100%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .merch-card:hover .merch-image::before {
+      opacity: 1;
+    }
+
+    .merch-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .merch-card:hover .merch-image img {
+      transform: scale(1.15) rotate(2deg);
+    }
+
+    .merch-card h4 {
+      font-size: 19px;
+      margin: 20px 20px 10px;
+      color: var(--gold);
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    .merch-price {
+      font-weight: 800;
+      color: var(--leaf);
+      margin: 0 20px 18px;
+      font-size: 24px;
+      text-shadow: 0 2px 10px rgba(147,209,124,0.3);
+    }
+
+    .merch-btn {
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      color: var(--bg-deep);
+      border: none;
+      border-radius: 14px;
+      padding: 14px 28px;
+      margin: 0 20px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(147,209,124,0.3);
+      width: calc(100% - 40px);
+      justify-content: center;
+    }
+
+    .merch-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(147,209,124,0.5);
+      background: linear-gradient(135deg, #a8e08a, #1b773f);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: linear-gradient(180deg, rgba(3,28,11,0.7), rgba(3,28,11,0.95));
+      padding: 50px 6vw;
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+      border-top: 1px solid rgba(147,209,124,0.1);
+    }
+
+    .footer-content h3 {
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-size: 24px;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    .footer-content p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .social-links a {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(147,209,124,0.15), rgba(27,119,63,0.1));
+      border: 2px solid rgba(147,209,124,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 26px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-6px) scale(1.12);
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      color: var(--bg-deep);
+      box-shadow: 0 10px 30px rgba(147,209,124,0.4);
+    }
+
+    /* ========== FALLING LEAVES ========== */
+    #falling-leaves {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .leaf {
+      position: absolute;
+      top: -50px;
+      opacity: 0.6;
+      font-size: 16px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      header {
+        padding: 12px 16px;
+      }
+
+      .hero {
+        min-height: 85vh;
+        padding: 90px 5vw 50px;
+      }
+
+      .hero-logo {
+        width: 140px;
+        height: 140px;
+      }
+
+      .about-grid,
+      .merch-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .nilai-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .countdown-mini {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .acara-card {
+        padding: 40px 28px;
+      }
+
+      .brand h1 {
+        font-size: 16px;
+      }
+
+      .brand p {
+        font-size: 12px;
+      }
+
+      .brand .logo {
+        width: 56px;
+        height: 56px;
+      }
+
+      .extra-logos .logo-box {
+        width: 54px;
+        height: 54px;
+      }
+
+      section {
+        padding: 60px 5vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .extra-logos {
+        gap: 8px;
+      }
+
+      .extra-logos .logo-box {
+        width: 48px;
+        height: 48px;
+      }
+
+      header {
+        padding: 10px 14px;
+        gap: 12px;
+      }
+
+      .menu-toggle {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+      }
+
+      .hero-quote {
+        padding: 20px 25px;
+      }
+
+      .countdown-box .number {
+        font-size: 28px;
+      }
+
+      .countdown-box .label {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== HEADER ========== -->
+  <header>
+    <!-- Menu Toggle -->
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="brand">
+      <img src="images/logo-instiper-removebg-preview.png" alt="Logo Instiper" class="logo" />
+      <div>
+        <h1>JELAJAH HUTAN 2025</h1>
+        <p>KEHUTANAN</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="extra-logos">
+        <img src="images/BEM.jpg" alt="Logo BEM" class="logo-box">
+        <img src="images/SENAT.jpg" alt="Logo SENAT" class="logo-box">
+        <img src="images/HMJ.jpg" alt="Logo HMJ" class="logo-box">
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SIDE MENU ========== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="side-menu" id="sideMenu">
+    <nav>
+      <a href="#home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#about">
+        <i class="fas fa-tree"></i>
+        <span>Apa Itu Jelajah Hutan</span>
+      </a>
+      <a href="#nilai">
+        <i class="fas fa-star"></i>
+        <span>9 Nilai Dasar Rimbawan</span>
+      </a>
+      <a href="#acara">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Acara</span>
+      </a>
+      <a href="#merchandise">
+        <i class="fas fa-shopping-bag"></i>
+        <span>Merchandise</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-logo">
+        <img src="images/logo-instiper-removebg-preview.png" alt="Logo Jelajah Hutan">
+      </div>
+      <h1>Selamat Datang Di<span>Jelajah Hutan 2025</span></h1>
+      <p>Program Pengkaderan Untuk Mahasiswa Baru Fakultas Kehutanan Instiper Yogyakarta</p>
+      
+      <div class="hero-quote">
+        <p>"PENGKADERAN BUKAN AJANG PERPELONCOAN MELAINKAN LANGKAH AWAL MENJADI SEORANG RIMBAWAN : SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"</p>
+      </div>
+
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== APA ITU JELAJAH HUTAN ========== -->
+  <section id="about">
+    <div class="section-title">
+      <h2>Apa Itu Jelajah Hutan?</h2>
+      <p>Mengenal lebih dalam tentang program pengkaderan kami</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon">
+          <img src="images/Jelajah.png" alt="Petualangan">
+        </div>
+        <h3>Petualangan</h3>
+        <p>Eksplorasi alam yang menggabungkan edukasi dan petualangan di hutan belantara</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-icon">
+          <img src="images/Jelajah.png" alt="Pendidikan">
+        </div>
+        <h3>Pendidikan</h3>
+        <p>Belajar tentang ekosistem hutan, keanekaragaman hayati, dan pelestarian lingkungan</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-icon">
+          <img src="images/Jelajah.png" alt="Karakter">
+        </div>
+        <h3>Karakter</h3>
+        <p>Membangun karakter rimbawan sejati melalui perjalanan fisik dan spiritual</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 9 NILAI DASAR RIMBAWAN ========== -->
+  <section id="nilai">
+    <div class="section-title">
+      <h2>9 Nilai Dasar Rimbawan</h2>
+      <p>Nilai-nilai yang menjadi pedoman etika dan profesionalisme seorang rimbawan</p>
+    </div>
+
+    <div class="nilai-grid">
+      <div class="nilai-card">
+        <div class="nilai-number">1</div>
+        <h4>Jujur</h4>
+        <p>Integritas dan kejujuran dalam setiap tindakan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">2</div>
+        <h4>Tanggung Jawab</h4>
+        <p>Bertanggung jawab atas setiap amanah yang diberikan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">3</div>
+        <h4>Ikhlas</h4>
+        <p>Rela sepenuh hati tanpa mengharapkan imbalan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">4</div>
+        <h4>Disiplin</h4>
+        <p>Taat dan patuh terhadap nilai dan peraturan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">5</div>
+        <h4>Visioner</h4>
+        <p>Memiliki pandangan jauh ke masa depan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">6</div>
+        <h4>Adil</h4>
+        <p>Bebas dari diskriminasi dan ketidakjujuran</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">7</div>
+        <h4>Peduli</h4>
+        <p>Memperhatikan orang lain dan lingkungan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">8</div>
+        <h4>Kerjasama</h4>
+        <p>Bekerja bersama untuk mencapai tujuan</p>
+      </div>
+
+      <div class="nilai-card">
+        <div class="nilai-number">9</div>
+        <h4>Profesional</h4>
+        <p>Ahli dan kompeten dalam bidangnya</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ACARA SECTION ========== -->
+  <section id="acara">
+    <div class="section-title">
+      <h2>Acara Mendatang</h2>
+      <p>Bersiaplah untuk petualangan yang tak terlupakan</p>
+    </div>
+
+    <div class="acara-card">
+      <div class="acara-badge">🌿 Event Utama</div>
+      <h3>JELAJAH HUTAN 2025</h3>
+      <div class="acara-date">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Desember 2025</span>
+      </div>
+
+      <div class="countdown-mini">
+        <div class="countdown-box">
+          <span class="number" id="days">0</span>
+          <span class="label">Hari</span>
+        </div>
+        <div class="countdown-box">
+          <span class="number" id="hours">0</span>
+          <span class="label">Jam</span>
+        </div>
+        <div class="countdown-box">
+          <span class="number" id="minutes">0</span>
+          <span class="label">Menit</span>
+        </div>
+        <div class="countdown-box">
+          <span class="number" id="seconds">0</span>
+          <span class="label">Detik</span>
+        </div>
+      </div>
+
+      <a href="https://jelajahhutanfahutan.github.io/JelajahHutan2025/" class="acara-btn">
+        <i class="fas fa-info-circle"></i> Jelajah Hutan 2025
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== MERCHANDISE SECTION ========== -->
+  <section id="merchandise">
+    <div class="section-title">
+      <h2>Merchandise Resmi</h2>
+      <p>Koleksi merchandise eksklusif Jelajah Hutan 2025</p>
+    </div>
+
+    <div class="merch-grid">
+      <div class="merch-card">
+        <div class="merch-image">
+          <img src="images/KAOS.png" alt="Kaos Jelajah Hutan">
+        </div>
+        <h4>Kaos Jelajah Hutan</h4>
+        <div class="merch-price">Rp120.000</div>
+        <button class="merch-btn">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image">
+          <img src="images/topi.jpeg" alt="Topi Petualang">
+        </div>
+        <h4>Topi Petualang</h4>
+        <div class="merch-price">Rp75.000</div>
+        <button class="merch-btn">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image">
+          <img src="images/tumbler.jpg" alt="Tumbler Eco-Friendly">
+        </div>
+        <h4>Tumbler Eco-Friendly</h4>
+        <div class="merch-price">Rp90.000</div>
+        <button class="merch-btn">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-image">
+          <img src="images/pin1.jpg" alt="Pin Eksklusif">
+        </div>
+        <h4>Pin Eksklusif</h4>
+        <div class="merch-price">Rp25.000</div>
+        <button class="merch-btn">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-content">
+      <h3>Jelajah Hutan 2025</h3>
+      <p>Cinta Alam, Lestarikan Hutan 🌿</p>
+      
+      <div class="social-links">
+        <a href="https://wa.me/6281378347148" target="_blank" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/jelajah_hutan25/" target="_blank" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:jelajahhutanfahutan@gmail.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="#" id="shareBtn" title="Bagikan">
+          <i class="fas fa-share-nodes"></i>
+        </a>
+      </div>
+      
+      <p style="margin-top: 20px; font-size: 14px;">
+        © 2025 Fakultas Kehutanan Instiper Yogyakarta
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========== FALLING LEAVES EFFECT ========== -->
+  <div id="falling-leaves"></div>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ========== MENU TOGGLE ==========
+    const menuToggle = document.getElementById('menuToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      sideMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      sideMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    document.querySelectorAll('.side-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    // ========== FALLING LEAVES ==========
+    const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
+    const leafContainer = document.getElementById('falling-leaves');
+
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+      leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.fontSize = (12 + Math.random() * 8) + 'px';
+
+      const duration = 6 + Math.random() * 10;
+      const direction = Math.random() < 0.5 ? -1 : 1;
+      const sway = 40 + Math.random() * 60;
+
+      leaf.animate(
+        [
+          { transform: `translateX(0px) translateY(-50px) rotate(0deg)`, opacity: 0 },
+          { transform: `translateX(${direction * sway}px) translateY(50vh) rotate(180deg)`, opacity: 0.7 },
+          { transform: `translateX(${direction * -sway}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+        ],
+        {
+          duration: duration * 1000,
+          easing: 'linear',
+          fill: 'forwards'
+        }
+      );
+
+      leafContainer.appendChild(leaf);
+      setTimeout(() => leaf.remove(), duration * 1000);
+    }
+
+    setInterval(createLeaf, 2500);
+
+    // ========== LEAF BURST ==========
+    document.addEventListener("pointerdown", function(e) {
+      const burst = document.createElement("div");
+      burst.style.position = "fixed";
+      burst.style.left = e.clientX + "px";
+      burst.style.top = e.clientY + "px";
+      burst.style.pointerEvents = "none";
+      burst.style.zIndex = "9999";
+
+      for (let i = 0; i < 10; i++) {
+        const leaf = document.createElement("span");
+        leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+        leaf.style.position = "absolute";
+        leaf.style.fontSize = (12 + Math.random() * 12) + "px";
+        leaf.style.opacity = "0.9";
+        
+        const x = (Math.random() - 0.5) * 250;
+        const y = (Math.random() - 0.5) * 250;
+        
+        leaf.animate(
+          [
+            { transform: 'translate(0, 0) scale(1) rotate(0deg)', opacity: 1 },
+            { transform: `translate(${x}px, ${y}px) scale(0.4) rotate(720deg)`, opacity: 0 }
+          ],
+          { duration: 1200, easing: 'ease-out' }
+        );
+        
+        burst.appendChild(leaf);
+      }
+
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 1200);
+    });
+
+    // ========== COUNTDOWN ==========
+    function countdown() {
+      const targetDate = new Date("2025-12-06T00:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(countdown, 1000);
+    countdown();
+
+    // ========== SMOOTH SCROLL ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ========== MERCHANDISE ==========
+    document.querySelectorAll('.merch-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const itemName = this.closest('.merch-card').querySelector('h4').textContent;
+        const itemPrice = this.closest('.merch-card').querySelector('.merch-price').textContent;
+        
+        const phone = '6281378347148';
+        const message = encodeURIComponent(
+          `Halo, saya tertarik dengan:\n\n${itemName}\nHarga: ${itemPrice}\n\nMohon info lebih lanjut. Terima kasih!`
+        );
+        
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+      });
+    });
+
+    // ========== SHARE ==========
+    document.getElementById('shareBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const url = window.location.href.split('#')[0];
+      const title = "Jelajah Hutan 2025 🌿";
+      const text = "Yuk ikuti Jelajah Hutan 2025! Program pengkaderan mahasiswa baru Fakultas Kehutanan Instiper Yogyakarta.";
+
+      if (navigator.share) {
+        navigator.share({ title: title, text: text, url: url })
+          .catch(err => console.log('Error:', err));
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link telah disalin! Bagikan ke temanmu 😊');
+        }).catch(err => {
+          alert('Gagal menyalin: ' + url);
+        });
+      }
+    });
+
+    // ========== SCROLL ANIMATION ==========
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(40px)';
+      section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(section);
+    });
+
+    // ========== SCROLL INDICATOR ==========
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+      scrollIndicator.addEventListener('click', () => {
+        document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 150) {
+          scrollIndicator.style.opacity = '0';
+          scrollIndicator.style.pointerEvents = 'none';
+        } else {
+          scrollIndicator.style.opacity = '1';
+          scrollIndicator.style.pointerEvents = 'auto';
+        }
+      });
+    }
+
+    // ========== NILAI CARD CLICK ==========
+    document.querySelectorAll('.nilai-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const nilai = this.querySelector('h4').textContent;
+        const deskripsi = this.querySelector('p').textContent;
+        alert(`${nilai}\n\n${deskripsi}`);
+      });
+    });
+  </script>
+</body>
+</html>
