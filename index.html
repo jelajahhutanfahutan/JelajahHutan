@@ -562,6 +562,170 @@
       margin: 0;
     }
 
+    /* ========== MODAL NILAI ========== */
+    .nilai-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .nilai-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #0a2818 0%, var(--bg-deep) 100%);
+      border: 3px solid var(--gold);
+      border-radius: 25px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 45px;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+      animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 24px;
+      color: var(--gold);
+    }
+
+    .modal-close:hover {
+      background: var(--gold);
+      color: var(--bg-deep);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding-bottom: 25px;
+      border-bottom: 2px solid rgba(147,209,124,0.2);
+    }
+
+    .modal-number {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--gold), #e5bd2f);
+      color: var(--bg-deep);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(244,208,63,0.5);
+    }
+
+    .modal-header h3 {
+      font-size: 32px;
+      color: var(--gold);
+      margin: 0 0 15px;
+      font-weight: 800;
+      text-shadow: 0 4px 15px rgba(244,208,63,0.3);
+    }
+
+    .modal-header .subtitle {
+      font-size: 18px;
+      color: var(--leaf);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .modal-body {
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .modal-body h4 {
+      color: var(--gold);
+      font-size: 22px;
+      margin: 30px 0 15px;
+      font-weight: 700;
+    }
+
+    .modal-body p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      text-align: justify;
+    }
+
+    .modal-body ul {
+      margin: 20px 0;
+      padding-left: 25px;
+    }
+
+    .modal-body li {
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .modal-body li::marker {
+      color: var(--leaf);
+    }
+
+    /* Custom scrollbar for modal */
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: var(--leaf);
+      border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
     /* ========== ACARA SECTION ========== */
     .acara-card {
       max-width: 700px;
@@ -695,33 +859,33 @@
 
     .merch-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 35px;
-      max-width: 1300px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
       margin: 0 auto;
       justify-items: center;
     }
 
     .merch-card {
       background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
-      border-radius: 25px;
+      border-radius: 20px;
       overflow: hidden;
       width: 100%;
-      max-width: 280px;
+      max-width: 220px;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
       border: 2px solid rgba(147,209,124,0.15);
     }
 
     .merch-card:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 25px 65px rgba(0,0,0,0.45);
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
       border-color: var(--leaf);
     }
 
     .merch-image {
       width: 100%;
-      height: 220px;
+      height: 180px;
       overflow: hidden;
       position: relative;
     }
@@ -752,8 +916,8 @@
     }
 
     .merch-card h4 {
-      font-size: 19px;
-      margin: 20px 20px 10px;
+      font-size: 17px;
+      margin: 18px 18px 8px;
       color: var(--gold);
       font-weight: 700;
       text-shadow: 0 2px 10px rgba(244,208,63,0.3);
@@ -762,8 +926,8 @@
     .merch-price {
       font-weight: 800;
       color: var(--leaf);
-      margin: 0 20px 18px;
-      font-size: 24px;
+      margin: 0 18px 15px;
+      font-size: 20px;
       text-shadow: 0 2px 10px rgba(147,209,124,0.3);
     }
 
@@ -771,25 +935,111 @@
       background: linear-gradient(135deg, var(--leaf), var(--forest));
       color: var(--bg-deep);
       border: none;
-      border-radius: 14px;
-      padding: 14px 28px;
-      margin: 0 20px 20px;
+      border-radius: 12px;
+      padding: 12px 22px;
+      margin: 0 18px 18px;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 8px 20px rgba(147,209,124,0.3);
-      width: calc(100% - 40px);
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(147,209,124,0.3);
+      width: calc(100% - 36px);
       justify-content: center;
     }
 
     .merch-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(147,209,124,0.5);
+      box-shadow: 0 10px 25px rgba(147,209,124,0.5);
       background: linear-gradient(135deg, #a8e08a, #1b773f);
+    }
+
+    /* ===== Popup Form Styling ===== */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+    }
+
+    .popup {
+      background: linear-gradient(135deg, #fff, #f8f8f8);
+      border-radius: 20px;
+      padding: 35px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .popup h3 {
+      margin-top: 0;
+      color: #1b773f;
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 25px;
+    }
+
+    .popup form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .popup input {
+      padding: 14px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .popup input:focus {
+      outline: none;
+      border-color: #1b773f;
+      box-shadow: 0 0 0 3px rgba(27,119,63,0.1);
+    }
+
+    .popup button {
+      background: linear-gradient(135deg, #93d17c, #1b773f);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .popup button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(27,119,63,0.3);
+    }
+
+    .popup .close-btn {
+      background: linear-gradient(135deg, #d9534f, #c9302c);
+      margin-top: 5px;
+    }
+
+    .popup .close-btn:hover {
+      box-shadow: 0 8px 20px rgba(217,83,79,0.3);
     }
 
     /* ========== FOOTER ========== */
@@ -874,10 +1124,14 @@
         height: 140px;
       }
 
-      .about-grid,
-      .merch-grid {
+      .about-grid {
         grid-template-columns: 1fr;
         gap: 25px;
+      }
+
+      .merch-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
       }
 
       .nilai-grid {
@@ -914,6 +1168,23 @@
 
       section {
         padding: 60px 5vw;
+      }
+
+      .modal-content {
+        padding: 35px 25px;
+      }
+
+      .modal-header h3 {
+        font-size: 26px;
+      }
+
+      .modal-body h4 {
+        font-size: 20px;
+      }
+
+      .modal-body p,
+      .modal-body li {
+        font-size: 15px;
       }
     }
 
@@ -952,6 +1223,22 @@
       .countdown-box .label {
         font-size: 11px;
       }
+
+      .merch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .merch-card {
+        max-width: 100%;
+      }
+
+      .modal-content {
+        padding: 30px 20px;
+      }
+
+      .popup {
+        padding: 25px;
+      }
     }
   </style>
 </head>
@@ -959,7 +1246,6 @@
 <body>
   <!-- ========== HEADER ========== -->
   <header>
-    <!-- Menu Toggle -->
     <div class="menu-toggle" id="menuToggle">
       <span></span>
       <span></span>
@@ -1071,61 +1357,76 @@
     </div>
 
     <div class="nilai-grid">
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="1">
         <div class="nilai-number">1</div>
         <h4>Jujur</h4>
         <p>Integritas dan kejujuran dalam setiap tindakan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="2">
         <div class="nilai-number">2</div>
         <h4>Tanggung Jawab</h4>
         <p>Bertanggung jawab atas setiap amanah yang diberikan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="3">
         <div class="nilai-number">3</div>
         <h4>Ikhlas</h4>
         <p>Rela sepenuh hati tanpa mengharapkan imbalan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="4">
         <div class="nilai-number">4</div>
         <h4>Disiplin</h4>
         <p>Taat dan patuh terhadap nilai dan peraturan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="5">
         <div class="nilai-number">5</div>
         <h4>Visioner</h4>
         <p>Memiliki pandangan jauh ke masa depan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="6">
         <div class="nilai-number">6</div>
         <h4>Adil</h4>
         <p>Bebas dari diskriminasi dan ketidakjujuran</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="7">
         <div class="nilai-number">7</div>
         <h4>Peduli</h4>
         <p>Memperhatikan orang lain dan lingkungan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="8">
         <div class="nilai-number">8</div>
         <h4>Kerjasama</h4>
         <p>Bekerja bersama untuk mencapai tujuan</p>
       </div>
 
-      <div class="nilai-card">
+      <div class="nilai-card" data-nilai="9">
         <div class="nilai-number">9</div>
         <h4>Profesional</h4>
         <p>Ahli dan kompeten dalam bidangnya</p>
       </div>
     </div>
   </section>
+
+  <!-- ========== MODAL NILAI ========== -->
+  <div class="nilai-modal" id="nilaiModal">
+    <div class="modal-content">
+      <div class="modal-close" id="modalClose">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="modal-header">
+        <div class="modal-number" id="modalNumber"></div>
+        <h3 id="modalTitle"></h3>
+        <p class="subtitle" id="modalSubtitle"></p>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
 
   <!-- ========== ACARA SECTION ========== -->
   <section id="acara">
@@ -1248,11 +1549,211 @@
     </div>
   </footer>
 
+  <!-- ===== POPUP FORM ===== -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <h3>Isi Data Pemesanan</h3>
+      <form id="orderForm">
+        <input type="text" id="buyerName" placeholder="Nama Lengkap" required>
+        <input type="text" id="buyerClass" placeholder="Kelas" required>
+        <input type="text" id="buyerBatch" placeholder="Angkatan" required>
+        <input type="number" id="quantity" placeholder="Jumlah" required>
+        <button type="submit">Kirim ke WhatsApp</button>
+        <button type="button" class="close-btn" id="closePopup">Batal</button>
+      </form>
+    </div>
+  </div>
+
   <!-- ========== FALLING LEAVES EFFECT ========== -->
   <div id="falling-leaves"></div>
 
   <!-- ========== JAVASCRIPT ========== -->
   <script>
+    // ========== DATA NILAI RIMBAWAN ==========
+    const nilaiData = {
+      1: {
+        title: "Jujur",
+        subtitle: "Berbicara dan bertindak sesuai dengan kebenaran",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Kejujuran adalah fondasi dari karakter seorang rimbawan sejati. Seorang rimbawan yang jujur akan selalu berbicara dan bertindak sesuai dengan fakta dan kebenaran, tanpa manipulasi atau kebohongan. Kejujuran bukan hanya dalam perkataan, tetapi juga dalam tindakan dan niat.</p>
+          
+          <h4>🌱 Implementasi dalam Kehidupan</h4>
+          <ul>
+            <li>Jujur dalam menyampaikan laporan dan data penelitian hutan</li>
+            <li>Tidak memalsukan dokumen atau informasi terkait kondisi hutan</li>
+            <li>Mengakui kesalahan dan berani bertanggung jawab</li>
+            <li>Transparan dalam setiap tindakan pengelolaan hutan</li>
+            <li>Menjaga integritas dalam hubungan dengan masyarakat dan stakeholder</li>
+          </ul>
+          
+          <h4>💡 Manfaat</h4>
+          <p>Dengan menjunjung tinggi nilai kejujuran, seorang rimbawan akan mendapatkan kepercayaan dari masyarakat, membangun reputasi yang baik, dan menciptakan lingkungan kerja yang sehat. Kejujuran adalah kunci untuk pengelolaan hutan yang berkelanjutan dan adil.</p>
+        `
+      },
+      2: {
+        title: "Tanggung Jawab",
+        subtitle: "Memikul dan melaksanakan amanah dengan sepenuh hati",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Tanggung jawab adalah kesadaran untuk melaksanakan tugas dan kewajiban dengan sebaik-baiknya. Seorang rimbawan bertanggung jawab tidak hanya pada pekerjaannya, tetapi juga pada kelestarian hutan, masyarakat, dan generasi mendatang.</p>
+          
+          <h4>🌱 Bentuk Tanggung Jawab Rimbawan</h4>
+          <ul>
+            <li>Bertanggung jawab atas kelestarian dan keberlanjutan hutan</li>
+            <li>Melaksanakan tugas konservasi dengan penuh dedikasi</li>
+            <li>Menjaga keseimbangan ekosistem hutan</li>
+            <li>Bertanggung jawab pada masyarakat sekitar hutan</li>
+            <li>Mewariskan hutan yang sehat untuk generasi mendatang</li>
+          </ul>
+          
+          <h4>💡 Pentingnya</h4>
+          <p>Tanggung jawab yang tinggi akan menciptakan pengelolaan hutan yang profesional dan berkelanjutan. Setiap keputusan yang diambil harus mempertimbangkan dampak jangka panjang terhadap ekosistem dan kehidupan.</p>
+        `
+      },
+      3: {
+        title: "Ikhlas",
+        subtitle: "Melakukan sesuatu dengan tulus tanpa pamrih",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Keikhlasan adalah melakukan sesuatu dengan hati yang tulus, tanpa mengharapkan imbalan atau pujian. Seorang rimbawan yang ikhlas bekerja demi kelestarian alam dan kebaikan bersama, bukan untuk kepentingan pribadi semata.</p>
+          
+          <h4>🌱 Wujud Keikhlasan</h4>
+          <ul>
+            <li>Bekerja dengan sepenuh hati untuk kelestarian hutan</li>
+            <li>Tidak mengutamakan keuntungan pribadi di atas kepentingan hutan</li>
+            <li>Rela berkorban demi keberlanjutan ekosistem</li>
+            <li>Memberikan yang terbaik tanpa mengharap pujian</li>
+            <li>Melayani masyarakat dengan tulus</li>
+          </ul>
+          
+          <h4>💡 Hikmah</h4>
+          <p>Keikhlasan membawa ketenangan hati dan keberkahan dalam setiap pekerjaan. Rimbawan yang ikhlas akan menemukan kebahagiaan sejati dalam menjaga dan melestarikan hutan, karena dilakukan dengan cinta yang tulus.</p>
+        `
+      },
+      4: {
+        title: "Disiplin",
+        subtitle: "Ketaatan pada aturan dan komitmen yang telah ditetapkan",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Disiplin adalah ketaatan dan kepatuhan terhadap aturan, norma, dan komitmen yang telah ditetapkan. Seorang rimbawan yang disiplin akan konsisten dalam menjalankan tugasnya, tepat waktu, dan taat pada prosedur yang berlaku.</p>
+          
+          <h4>🌱 Bentuk Kedisiplinan</h4>
+          <ul>
+            <li>Tepat waktu dalam melaksanakan tugas dan tanggung jawab</li>
+            <li>Konsisten dalam menjalankan prosedur konservasi hutan</li>
+            <li>Taat pada regulasi dan peraturan kehutanan</li>
+            <li>Menjaga komitmen terhadap rencana kerja yang telah disusun</li>
+            <li>Disiplin dalam menjaga profesionalisme kerja</li>
+          </ul>
+          
+          <h4>💡 Dampak Positif</h4>
+          <p>Kedisiplinan menciptakan sistem kerja yang teratur dan efisien. Rimbawan yang disiplin akan mampu mencapai target konservasi dengan lebih baik dan memberikan contoh yang baik bagi lingkungannya.</p>
+        `
+      },
+      5: {
+        title: "Visioner",
+        subtitle: "Memiliki pandangan jauh ke depan untuk masa depan yang lebih baik",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Visioner adalah kemampuan untuk melihat dan merencanakan masa depan dengan perspektif yang luas. Seorang rimbawan visioner tidak hanya berpikir untuk hari ini, tetapi juga untuk generasi mendatang, dengan mempertimbangkan keberlanjutan ekosistem hutan.</p>
+          
+          <h4>🌱 Karakteristik Rimbawan Visioner</h4>
+          <ul>
+            <li>Berpikir jangka panjang tentang kelestarian hutan</li>
+            <li>Inovatif dalam mencari solusi masalah kehutanan</li>
+            <li>Proaktif dalam mengantisipasi tantangan masa depan</li>
+            <li>Memiliki rencana strategis untuk konservasi berkelanjutan</li>
+            <li>Mampu melihat peluang dalam setiap tantangan</li>
+          </ul>
+          
+          <h4>💡 Pentingnya Visi</h4>
+          <p>Dengan visi yang jelas, seorang rimbawan dapat mengarahkan upaya konservasi dengan lebih efektif dan memastikan bahwa hutan akan tetap lestari untuk generasi mendatang.</p>
+        `
+      },
+      6: {
+        title: "Adil",
+        subtitle: "Memberikan hak kepada yang berhak tanpa diskriminasi",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Keadilan adalah prinsip memberikan sesuatu sesuai dengan haknya, tanpa membeda-bedakan atau diskriminasi. Seorang rimbawan yang adil akan memperlakukan semua pihak dengan setara dan memberikan akses yang sama terhadap sumber daya hutan.</p>
+          
+          <h4>🌱 Implementasi Keadilan</h4>
+          <ul>
+            <li>Memberikan akses yang adil terhadap manfaat hutan</li>
+            <li>Tidak diskriminatif dalam pelayanan kepada masyarakat</li>
+            <li>Objektif dalam membuat keputusan</li>
+            <li>Menghormati hak-hak masyarakat adat dan lokal</li>
+            <li>Transparan dalam alokasi sumber daya hutan</li>
+          </ul>
+          
+          <h4>💡 Manfaat</h4>
+          <p>Keadilan menciptakan harmoni dalam pengelolaan hutan dan mencegah konflik sosial. Rimbawan yang adil akan dihormati dan dipercaya oleh semua pihak.</p>
+        `
+      },
+      7: {
+        title: "Peduli",
+        subtitle: "Memiliki empati dan kepedulian terhadap sesama dan lingkungan",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Kepedulian adalah sikap empati dan perhatian terhadap orang lain dan lingkungan sekitar. Seorang rimbawan yang peduli tidak hanya fokus pada pekerjaannya, tetapi juga memperhatikan kesejahteraan masyarakat dan kelestarian alam.</p>
+          
+          <h4>🌱 Wujud Kepedulian</h4>
+          <ul>
+            <li>Peduli terhadap kelestarian flora dan fauna</li>
+            <li>Memperhatikan kesejahteraan masyarakat sekitar hutan</li>
+            <li>Responsif terhadap isu-isu lingkungan</li>
+            <li>Aktif dalam program konservasi dan edukasi</li>
+            <li>Empati terhadap dampak perubahan iklim</li>
+          </ul>
+          
+          <h4>💡 Dampak Positif</h4>
+          <p>Kepedulian yang tinggi akan menciptakan lingkungan yang lebih baik dan hubungan yang harmonis antara manusia dengan alam. Rimbawan yang peduli akan menjadi agen perubahan positif dalam masyarakat.</p>
+        `
+      },
+      8: {
+        title: "Kerjasama",
+        subtitle: "Bekerja bersama untuk mencapai tujuan bersama",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Kerjasama adalah kemampuan untuk bekerja bersama dengan orang lain dalam mencapai tujuan bersama. Seorang rimbawan yang baik memahami bahwa kelestarian hutan tidak bisa dicapai sendirian, tetapi memerlukan kolaborasi dari berbagai pihak.</p>
+          
+          <h4>🌱 Bentuk Kerjasama</h4>
+          <ul>
+            <li>Kolaborasi dengan sesama rimbawan dalam tim</li>
+            <li>Kemitraan dengan masyarakat lokal</li>
+            <li>Koordinasi dengan pemerintah dan stakeholder</li>
+            <li>Berbagi pengetahuan dan pengalaman</li>
+            <li>Sinergi dengan lembaga konservasi lainnya</li>
+          </ul>
+          
+          <h4>💡 Kekuatan Bersama</h4>
+          <p>Kerjasama yang solid akan memperkuat upaya konservasi dan menciptakan dampak yang lebih besar. Seperti pepatah: "Bersama kita kuat, sendiri kita lemah."</p>
+        `
+      },
+      9: {
+        title: "Profesional",
+        subtitle: "Ahli dan kompeten dalam bidangnya dengan etika tinggi",
+        content: `
+          <h4>🌳 Pengertian</h4>
+          <p>Profesionalisme adalah sikap dan perilaku yang menunjukkan keahlian, kompetensi, dan etika yang tinggi dalam menjalankan profesi. Seorang rimbawan profesional memiliki pengetahuan yang mendalam, keterampilan yang mumpuni, dan etika kerja yang baik.</p>
+          
+          <h4>🌱 Ciri Rimbawan Profesional</h4>
+          <ul>
+            <li>Menguasai ilmu dan teknologi kehutanan</li>
+            <li>Selalu meningkatkan kompetensi dan pengetahuan</li>
+            <li>Bekerja dengan standar kualitas tinggi</li>
+            <li>Menjunjung tinggi kode etik profesi</li>
+            <li>Mampu memberikan solusi berbasis sains</li>
+            <li>Bertanggung jawab dan akuntabel dalam setiap tindakan</li>
+          </ul>
+          
+          <h4>💡 Pentingnya Profesionalisme</h4>
+          <p>Profesionalisme memastikan bahwa pengelolaan hutan dilakukan dengan cara yang terbaik, berdasarkan ilmu pengetahuan, dan memberikan hasil yang optimal. Rimbawan profesional adalah aset berharga bagi kelestarian hutan Indonesia.</p>
+        `
+      }
+    };
+
     // ========== MENU TOGGLE ==========
     const menuToggle = document.getElementById('menuToggle');
     const sideMenu = document.getElementById('sideMenu');
@@ -1279,6 +1780,41 @@
         menuOverlay.classList.remove('active');
         document.body.style.overflow = 'auto';
       });
+    });
+
+    // ========== MODAL NILAI ==========
+    const nilaiModal = document.getElementById('nilaiModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalNumber = document.getElementById('modalNumber');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalBody = document.getElementById('modalBody');
+
+    document.querySelectorAll('.nilai-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const nilaiId = this.getAttribute('data-nilai');
+        const data = nilaiData[nilaiId];
+        
+        modalNumber.textContent = nilaiId;
+        modalTitle.textContent = data.title;
+        modalSubtitle.textContent = data.subtitle;
+        modalBody.innerHTML = data.content;
+        
+        nilaiModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    modalClose.addEventListener('click', () => {
+      nilaiModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    nilaiModal.addEventListener('click', (e) => {
+      if (e.target === nilaiModal) {
+        nilaiModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
     });
 
     // ========== FALLING LEAVES ==========
@@ -1389,18 +1925,53 @@
     });
 
     // ========== MERCHANDISE ==========
+    let selectedItem = null;
+
     document.querySelectorAll('.merch-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        const itemName = this.closest('.merch-card').querySelector('h4').textContent;
-        const itemPrice = this.closest('.merch-card').querySelector('.merch-price').textContent;
-        
-        const phone = '6281378347148';
-        const message = encodeURIComponent(
-          `Halo, saya tertarik dengan:\n\n${itemName}\nHarga: ${itemPrice}\n\nMohon info lebih lanjut. Terima kasih!`
-        );
-        
-        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        const card = this.closest('.merch-card');
+        selectedItem = {
+          name: card.querySelector('h4').textContent,
+          price: card.querySelector('.merch-price').textContent
+        };
+        document.getElementById('popupOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
+    });
+
+    document.getElementById('closePopup').addEventListener('click', function() {
+      document.getElementById('popupOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    document.getElementById('popupOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const buyerName = document.getElementById('buyerName').value;
+      const buyerClass = document.getElementById('buyerClass').value;
+      const buyerBatch = document.getElementById('buyerBatch').value;
+      const quantity = document.getElementById('quantity').value;
+      
+      const phone = '6281378347148';
+      const message = encodeURIComponent(
+        `Halo, saya ingin memesan merchandise berikut:\n\n` +
+        `🛍️ *${selectedItem.name}*\n💰 Harga: ${selectedItem.price}\n📦 Jumlah: ${quantity}\n\n` +
+        `Berikut data saya:\n` +
+        `👤 Nama: ${buyerName}\n🏫 Kelas: ${buyerClass}\n🎓 Angkatan: ${buyerBatch}\n\n` +
+        `Mohon info lebih lanjut, terima kasih!`
+      );
+
+      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+      document.getElementById('popupOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+      this.reset();
     });
 
     // ========== SHARE ==========
@@ -1456,15 +2027,6 @@
         }
       });
     }
-
-    // ========== NILAI CARD CLICK ==========
-    document.querySelectorAll('.nilai-card').forEach(card => {
-      card.addEventListener('click', function() {
-        const nilai = this.querySelector('h4').textContent;
-        const deskripsi = this.querySelector('p').textContent;
-        alert(`${nilai}\n\n${deskripsi}`);
-      });
-    });
   </script>
 </body>
 </html>
