@@ -419,6 +419,7 @@
       box-shadow: 0 15px 50px rgba(0,0,0,0.25);
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .about-card::before {
@@ -562,8 +563,9 @@
       margin: 0;
     }
 
-    /* ========== MODAL NILAI ========== */
-    .nilai-modal {
+    /* ========== MODAL STYLES ========== */
+    .nilai-modal,
+    .about-modal {
       position: fixed;
       top: 0;
       left: 0;
@@ -579,15 +581,17 @@
       animation: fadeIn 0.3s ease;
     }
 
-    .nilai-modal.active {
+    .nilai-modal.active,
+    .about-modal.active {
       display: flex;
     }
 
-    .modal-content {
+    .modal-content,
+    .about-modal-content {
       background: linear-gradient(135deg, #0a2818 0%, var(--bg-deep) 100%);
       border: 3px solid var(--gold);
       border-radius: 25px;
-      max-width: 700px;
+      max-width: 800px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
@@ -595,6 +599,10 @@
       position: relative;
       box-shadow: 0 25px 80px rgba(0,0,0,0.6);
       animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .about-modal-content {
+      max-width: 900px;
     }
 
     @keyframes fadeIn {
@@ -613,7 +621,8 @@
       }
     }
 
-    .modal-close {
+    .modal-close,
+    .about-modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
@@ -631,13 +640,15 @@
       color: var(--gold);
     }
 
-    .modal-close:hover {
+    .modal-close:hover,
+    .about-modal-close:hover {
       background: var(--gold);
       color: var(--bg-deep);
       transform: rotate(90deg) scale(1.1);
     }
 
-    .modal-header {
+    .modal-header,
+    .about-modal-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
@@ -659,7 +670,8 @@
       box-shadow: 0 10px 30px rgba(244,208,63,0.5);
     }
 
-    .modal-header h3 {
+    .modal-header h3,
+    .about-modal-header h3 {
       font-size: 32px;
       color: var(--gold);
       margin: 0 0 15px;
@@ -667,62 +679,73 @@
       text-shadow: 0 4px 15px rgba(244,208,63,0.3);
     }
 
-    .modal-header .subtitle {
+    .modal-header .subtitle,
+    .about-modal-header .subtitle {
       font-size: 18px;
       color: var(--leaf);
       font-style: italic;
       font-weight: 500;
     }
 
-    .modal-body {
+    .modal-body,
+    .about-modal-body {
       color: var(--muted);
       line-height: 1.9;
     }
 
-    .modal-body h4 {
+    .modal-body h4,
+    .about-modal-body h4 {
       color: var(--gold);
       font-size: 22px;
       margin: 30px 0 15px;
       font-weight: 700;
     }
 
-    .modal-body p {
+    .modal-body p,
+    .about-modal-body p {
       margin-bottom: 20px;
       font-size: 16px;
       text-align: justify;
     }
 
-    .modal-body ul {
+    .modal-body ul,
+    .about-modal-body ul {
       margin: 20px 0;
       padding-left: 25px;
     }
 
-    .modal-body li {
+    .modal-body li,
+    .about-modal-body li {
       margin-bottom: 12px;
       font-size: 16px;
       line-height: 1.8;
     }
 
-    .modal-body li::marker {
+    .modal-body li::marker,
+    .about-modal-body li::marker {
       color: var(--leaf);
     }
 
     /* Custom scrollbar for modal */
-    .modal-content::-webkit-scrollbar {
+    .modal-content::-webkit-scrollbar,
+    .about-modal-content::-webkit-scrollbar {
       width: 8px;
     }
 
-    .modal-content::-webkit-scrollbar-track {
+    .modal-content::-webkit-scrollbar-track,
+    .about-modal-content::-webkit-scrollbar-track {
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
 
-    .modal-content::-webkit-scrollbar-thumb {
+    .modal-content::-webkit-scrollbar-thumb,
+    .about-modal-content::-webkit-scrollbar-thumb {
       background: var(--leaf);
       border-radius: 10px;
     }
 
-    .modal-content::-webkit-scrollbar-thumb:hover {
+    .modal-content::-webkit-scrollbar-thumb:hover,
+    .about-modal-content::-webkit-scrollbar-thumb:hover {
       background: var(--gold);
     }
 
@@ -1170,20 +1193,25 @@
         padding: 60px 5vw;
       }
 
-      .modal-content {
+      .modal-content,
+      .about-modal-content {
         padding: 35px 25px;
       }
 
-      .modal-header h3 {
+      .modal-header h3,
+      .about-modal-header h3 {
         font-size: 26px;
       }
 
-      .modal-body h4 {
+      .modal-body h4,
+      .about-modal-body h4 {
         font-size: 20px;
       }
 
       .modal-body p,
-      .modal-body li {
+      .modal-body li,
+      .about-modal-body p,
+      .about-modal-body li {
         font-size: 15px;
       }
     }
@@ -1232,7 +1260,8 @@
         max-width: 100%;
       }
 
-      .modal-content {
+      .modal-content,
+      .about-modal-content {
         padding: 30px 20px;
       }
 
@@ -1327,24 +1356,7 @@
         <div class="about-icon">
           <img src="images/Jelajah.png" alt="Petualangan">
         </div>
-        <h3>Petualangan</h3>
-        <p>Eksplorasi alam yang menggabungkan edukasi dan petualangan di hutan belantara</p>
-      </div>
-
-      <div class="about-card">
-        <div class="about-icon">
-          <img src="images/Pendidikan.png" alt="Pendidikan">
-        </div>
-        <h3>Pendidikan</h3>
-        <p>Belajar tentang ekosistem hutan, keanekaragaman hayati, dan pelestarian lingkungan</p>
-      </div>
-
-      <div class="about-card">
-        <div class="about-icon">
-          <img src="images/Karaker.png" alt="Karakter">
-        </div>
-        <h3>Karakter</h3>
-        <p>Membangun karakter rimbawan sejati melalui perjalanan fisik dan spiritual</p>
+        <h3>JELAJAH HUTAN</h3>
       </div>
     </div>
   </section>
@@ -1396,7 +1408,7 @@
       <div class="nilai-card" data-nilai="7">
         <div class="nilai-number">7</div>
         <h4>Peduli</h4>
-        <p>Memperhatikan orang lain dan lingkungan</p>
+        <p>Memiliki empati dan kepedulian terhadap sesama dan lingkungan</p>
       </div>
 
       <div class="nilai-card" data-nilai="8">
@@ -1425,6 +1437,43 @@
         <p class="subtitle" id="modalSubtitle"></p>
       </div>
       <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL ABOUT ========== -->
+  <div class="about-modal" id="aboutModal">
+    <div class="about-modal-content">
+      <div class="about-modal-close" id="aboutModalClose">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="about-modal-header">
+        <h3>Apa Itu Jelajah Hutan?</h3>
+        <p class="subtitle">Program Pengkaderan Mahasiswa Baru Fakultas Kehutanan</p>
+      </div>
+      <div class="about-modal-body">
+        <h4>🌳 Definisi Jelajah Hutan</h4>
+        <p>Jelajah Hutan Fakultas Kehutanan INSTIPER Yogyakarta merupakan proses untuk membentuk rimbawan muda yang berintegritas, berintelektual, solid, adaptif, dan berjiwa konservasi. Kegiatan ini menjadi wadah bagi mahasiswa baru untuk mengenal dunia kehutanan, memahami nilai-nilai dasar rimbawan, dan menumbuhkan kepemimpinan berbasis karakter rimbawan sejati.</p>
+
+        <h4>🎯 Tujuan Utama</h4>
+        <ul>
+          <li><strong>Membangun Karakter Rimbawan:</strong> Membentuk mahasiswa yang memiliki integritas, disiplin, dan tanggung jawab sebagai calon rimbawan profesional</li>
+          <li><strong>Pengenalan Dunia Kehutanan:</strong> Memperkenalkan berbagai aspek ilmu kehutanan dan konservasi lingkungan</li>
+          <li><strong>Pengembangan Kepemimpinan:</strong> Melatih kemampuan kepemimpinan dan kerja sama tim dalam situasi lapangan</li>
+          <li><strong>Pembentukan Jaringan:</strong> Membangun ikatan persaudaraan antar mahasiswa kehutanan</li>
+          <li><strong>Pemahaman Nilai Konservasi:</strong> Menanamkan kesadaran akan pentingnya pelestarian hutan dan lingkungan</li>
+        </ul>
+        
+        <h4>Latar Belakang</h4>
+        <p>Jelajah Hutan terdiri dari beberapa tahapan kegiatan yang dirancang untuk memberikan pengalaman komprehensif:</p>
+        <ul>
+          <li>Jelajah Hutan merupakan kegiatan kaderisasi mahasiswa Fakultas Kehutanan INSTIPER Yogyakarta yang bertujuan membentuk karakter rimbawan sejati. Hutan menjadi ruang pembelajaran moral, intelektual, dan spiritual bagi mahasiswa untuk memahami makna sesungguhnya menjadi rimbawan.</li>
+          <li>Di tengah tantangan seperti degradasi hutan, perubahan iklim, dan krisis etika lingkungan, kegiatan ini hadir untuk menumbuhkan generasi rimbawan yang tangguh, berintegritas, serta peduli terhadap lingkungan.</li>
+          <li>Jelajah Hutan 2025 disusun berlandaskan lima konsep utama—pembentukan karakter, wawasan, solidaritas, etika, dan jiwa lingkungan—yang sejalan dengan 9 Nilai Dasar Rimbawan Kementerian LHK. Kegiatan ini menjadi langkah awal mahasiswa baru mengenal dunia kehutanan secara utuh dan menumbuhkan semangat cinta alam.</li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--leaf);">
+          ""PENGKADERAN BUKAN AJANG PERPELONCOAN MELAINKAN LANGKAH AWAL MENJADI SEORANG RIMBAWAN : SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"
+        </p>
+      </div>
     </div>
   </div>
 
@@ -1813,6 +1862,31 @@
     nilaiModal.addEventListener('click', (e) => {
       if (e.target === nilaiModal) {
         nilaiModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // ========== MODAL ABOUT ==========
+    const aboutModal = document.getElementById('aboutModal');
+    const aboutModalClose = document.getElementById('aboutModalClose');
+
+    // Tambahkan event listener untuk about cards
+    document.querySelectorAll('.about-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function() {
+        aboutModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    aboutModalClose.addEventListener('click', () => {
+      aboutModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    aboutModal.addEventListener('click', (e) => {
+      if (e.target === aboutModal) {
+        aboutModal.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
     });
