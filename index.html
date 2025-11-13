@@ -2372,6 +2372,70 @@
         }
       });
     }
+
+    // ========== REDIRECT TO EXTERNAL BROWSER ==========
+(function() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const currentURL = window.location.href;
+  
+  // Deteksi In-App Browser (Instagram, Facebook, Twitter, dll)
+  const isInAppBrowser = (
+    userAgent.includes('Instagram') ||
+    userAgent.includes('FBAN') ||
+    userAgent.includes('FBAV') ||
+    userAgent.includes('Twitter') ||
+    userAgent.includes('Line')
+  );
+  
+  // Jika dibuka dari in-app browser Instagram
+  if (isInAppBrowser) {
+    // Tampilkan notifikasi untuk membuka di browser
+    const openInBrowserMsg = document.createElement('div');
+    openInBrowserMsg.innerHTML = `
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #1b773f, #0b3d20);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        z-index: 999999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        font-family: 'Poppins', sans-serif;
+      ">
+        <div style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">
+          🌿 Untuk Pengalaman Terbaik
+        </div>
+        <div style="font-size: 14px; margin-bottom: 15px; opacity: 0.95;">
+          Buka halaman ini di browser (Chrome, Safari, Firefox)
+        </div>
+        <div style="font-size: 12px; opacity: 0.8;">
+          Tap tombol ⋯ (titik tiga) di pojok kanan atas<br/>
+          lalu pilih "Open in Browser" atau "Buka di Browser"
+        </div>
+      </div>
+    `;
+    document.body.insertBefore(openInBrowserMsg, document.body.firstChild);
+    
+    // Tambahkan padding agar konten tidak tertutup notifikasi
+    document.body.style.paddingTop = '140px';
+    
+    // Coba buka di browser eksternal (untuk beberapa device yang support)
+    setTimeout(() => {
+      // Untuk iOS - coba buka dengan Safari
+      if (/iPhone|iPad|iPod/.test(userAgent)) {
+        // Schema untuk membuka di Safari
+        window.location.href = currentURL.replace(/^https?:\/\//, 'x-safari-https://');
+      }
+      // Untuk Android - coba buka dengan intent
+      else if (/Android/.test(userAgent)) {
+        window.location.href = 'intent://' + currentURL.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+      }
+    }, 1000);
+  }
+})();
   </script>
 </body>
 </html>
