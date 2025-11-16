@@ -606,8 +606,7 @@
 
     /* ========== MODAL STYLES ========== */
     .nilai-modal,
-    .about-modal,
-    .merch-modal {
+    .about-modal {
       position: fixed;
       top: 0;
       left: 0;
@@ -624,14 +623,12 @@
     }
 
     .nilai-modal.active,
-    .about-modal.active,
-    .merch-modal.active {
+    .about-modal.active {
       display: flex;
     }
 
     .modal-content,
-    .about-modal-content,
-    .merch-modal-content {
+    .about-modal-content {
       background: linear-gradient(135deg, #0a2818 0%, var(--bg-deep) 100%);
       border: 3px solid var(--gold);
       border-radius: 25px;
@@ -647,10 +644,6 @@
 
     .about-modal-content {
       max-width: 900px;
-    }
-
-    .merch-modal-content {
-      max-width: 700px;
     }
 
     @keyframes fadeIn {
@@ -670,8 +663,7 @@
     }
 
     .modal-close,
-    .about-modal-close,
-    .merch-modal-close {
+    .about-modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
@@ -690,16 +682,14 @@
     }
 
     .modal-close:hover,
-    .about-modal-close:hover,
-    .merch-modal-close:hover {
+    .about-modal-close:hover {
       background: var(--gold);
       color: var(--bg-deep);
       transform: rotate(90deg) scale(1.1);
     }
 
     .modal-header,
-    .about-modal-header,
-    .merch-modal-header {
+    .about-modal-header {
       text-align: center;
       margin-bottom: 35px;
       padding-bottom: 25px;
@@ -722,8 +712,7 @@
     }
 
     .modal-header h3,
-    .about-modal-header h3,
-    .merch-modal-header h3 {
+    .about-modal-header h3 {
       font-size: 32px;
       color: var(--gold);
       margin: 0 0 15px;
@@ -732,8 +721,7 @@
     }
 
     .modal-header .subtitle,
-    .about-modal-header .subtitle,
-    .merch-modal-header .subtitle {
+    .about-modal-header .subtitle {
       font-size: 18px;
       color: var(--leaf);
       font-style: italic;
@@ -741,15 +729,13 @@
     }
 
     .modal-body,
-    .about-modal-body,
-    .merch-modal-body {
+    .about-modal-body {
       color: var(--muted);
       line-height: 1.9;
     }
 
     .modal-body h4,
-    .about-modal-body h4,
-    .merch-modal-body h4 {
+    .about-modal-body h4 {
       color: var(--gold);
       font-size: 22px;
       margin: 30px 0 15px;
@@ -757,58 +743,50 @@
     }
 
     .modal-body p,
-    .about-modal-body p,
-    .merch-modal-body p {
+    .about-modal-body p {
       margin-bottom: 20px;
       font-size: 16px;
       text-align: justify;
     }
 
     .modal-body ul,
-    .about-modal-body ul,
-    .merch-modal-body ul {
+    .about-modal-body ul {
       margin: 20px 0;
       padding-left: 25px;
     }
 
     .modal-body li,
-    .about-modal-body li,
-    .merch-modal-body li {
+    .about-modal-body li {
       margin-bottom: 12px;
       font-size: 16px;
       line-height: 1.8;
     }
 
     .modal-body li::marker,
-    .about-modal-body li::marker,
-    .merch-modal-body li::marker {
+    .about-modal-body li::marker {
       color: var(--leaf);
     }
 
     /* Custom scrollbar for modal */
     .modal-content::-webkit-scrollbar,
-    .about-modal-content::-webkit-scrollbar,
-    .merch-modal-content::-webkit-scrollbar {
+    .about-modal-content::-webkit-scrollbar {
       width: 8px;
     }
 
     .modal-content::-webkit-scrollbar-track,
-    .about-modal-content::-webkit-scrollbar-track,
-    .merch-modal-content::-webkit-scrollbar-track {
+    .about-modal-content::-webkit-scrollbar-track {
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
 
     .modal-content::-webkit-scrollbar-thumb,
-    .about-modal-content::-webkit-scrollbar-thumb,
-    .merch-modal-content::-webkit-scrollbar-thumb {
+    .about-modal-content::-webkit-scrollbar-thumb {
       background: var(--leaf);
       border-radius: 10px;
     }
 
     .modal-content::-webkit-scrollbar-thumb:hover,
-    .about-modal-content::-webkit-scrollbar-thumb:hover,
-    .merch-modal-content::-webkit-scrollbar-thumb:hover {
+    .about-modal-content::-webkit-scrollbar-thumb:hover {
       background: var(--gold);
     }
 
@@ -937,198 +915,6 @@
       box-shadow: 0 18px 45px rgba(147,209,124,0.5);
     }
 
-    /* ========== MERCHANDISE SECTION ========== */
-    #merchandise {
-      padding: 80px 6vw;
-      background: linear-gradient(180deg, transparent 0%, rgba(147,209,124,0.05) 50%, transparent 100%);
-    }
-
-    .merch-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
-      margin: 0 auto;
-      justify-items: center;
-    }
-
-    .merch-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
-      border-radius: 20px;
-      overflow: hidden;
-      width: 100%;
-      max-width: 220px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-      border: 2px solid rgba(147,209,124,0.15);
-      cursor: pointer;
-    }
-
-    .merch-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-      border-color: var(--leaf);
-    }
-
-    .merch-image {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .merch-image::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 0%, rgba(11,61,32,0.3) 100%);
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .merch-card:hover .merch-image::before {
-      opacity: 1;
-    }
-
-    .merch-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .merch-card:hover .merch-image img {
-      transform: scale(1.15) rotate(2deg);
-    }
-
-    .merch-card h4 {
-      font-size: 17px;
-      margin: 18px 18px 8px;
-      color: var(--gold);
-      font-weight: 700;
-      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
-    }
-
-    .merch-price {
-      font-weight: 800;
-      color: var(--leaf);
-      margin: 0 18px 15px;
-      font-size: 20px;
-      text-shadow: 0 2px 10px rgba(147,209,124,0.3);
-    }
-
-    .merch-btn {
-      background: linear-gradient(135deg, var(--leaf), var(--forest));
-      color: var(--bg-deep);
-      border: none;
-      border-radius: 12px;
-      padding: 12px 22px;
-      margin: 0 18px 18px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 14px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 6px 18px rgba(147,209,124,0.3);
-      width: calc(100% - 36px);
-      justify-content: center;
-    }
-
-    .merch-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(147,209,124,0.5);
-      background: linear-gradient(135deg, #a8e08a, #1b773f);
-    }
-
-    /* ===== Popup Form Styling ===== */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .popup-overlay.active {
-      display: flex;
-    }
-
-    .popup {
-      background: linear-gradient(135deg, #fff, #f8f8f8);
-      border-radius: 20px;
-      padding: 35px;
-      width: 90%;
-      max-width: 450px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    .popup h3 {
-      margin-top: 0;
-      color: #1b773f;
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 25px;
-    }
-
-    .popup form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .popup input {
-      padding: 14px;
-      border: 2px solid #ddd;
-      border-radius: 12px;
-      font-size: 15px;
-      transition: all 0.3s ease;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .popup input:focus {
-      outline: none;
-      border-color: #1b773f;
-      box-shadow: 0 0 0 3px rgba(27,119,63,0.1);
-    }
-
-    .popup button {
-      background: linear-gradient(135deg, #93d17c, #1b773f);
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 700;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .popup button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(27,119,63,0.3);
-    }
-
-    .popup .close-btn {
-      background: linear-gradient(135deg, #d9534f, #c9302c);
-      margin-top: 5px;
-    }
-
-    .popup .close-btn:hover {
-      box-shadow: 0 8px 20px rgba(217,83,79,0.3);
-    }
-
     /* ========== FOOTER ========== */
     footer {
       background: linear-gradient(180deg, rgba(3,28,11,0.7), rgba(3,28,11,0.95));
@@ -1176,7 +962,7 @@
       transform: translateY(-6px) scale(1.12);
       background: linear-gradient(135deg, var(--leaf), var(--forest));
       color: var(--bg-deep);
-      box-shadow: 0 10px 30px rgba(147,209,124,0.4);
+      box-shadow: 0 10px 30px rgba(147,209,63,0.4);
     }
 
     /* ========== FALLING LEAVES ========== */
@@ -1216,11 +1002,6 @@
         gap: 25px;
       }
 
-      .merch-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
-      }
-
       .nilai-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 20px;
@@ -1258,29 +1039,24 @@
       }
 
       .modal-content,
-      .about-modal-content,
-      .merch-modal-content {
+      .about-modal-content {
         padding: 35px 25px;
       }
 
       .modal-header h3,
-      .about-modal-header h3,
-      .merch-modal-header h3 {
+      .about-modal-header h3 {
         font-size: 26px;
       }
 
       .modal-body h4,
-      .about-modal-body h4,
-      .merch-modal-body h4 {
+      .about-modal-body h4 {
         font-size: 20px;
       }
 
       .modal-body p,
       .modal-body li,
       .about-modal-body p,
-      .about-modal-body li,
-      .merch-modal-body p,
-      .merch-modal-body li {
+      .about-modal-body li {
         font-size: 15px;
       }
     }
@@ -1321,22 +1097,9 @@
         font-size: 11px;
       }
 
-      .merch-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .merch-card {
-        max-width: 100%;
-      }
-
       .modal-content,
-      .about-modal-content,
-      .merch-modal-content {
+      .about-modal-content {
         padding: 30px 20px;
-      }
-
-      .popup {
-        padding: 25px;
       }
     }
   </style>
@@ -1393,10 +1156,6 @@
       <a href="#acara">
         <i class="fas fa-calendar-alt"></i>
         <span>Acara</span>
-      </a>
-      <a href="#merchandise">
-        <i class="fas fa-shopping-bag"></i>
-        <span>Merchandise</span>
       </a>
     </nav>
   </div>
@@ -1593,74 +1352,6 @@
     </div>
   </section>
 
-  <!-- ========== MERCHANDISE SECTION ========== -->
-  <section id="merchandise">
-    <div class="section-title">
-      <h2>Merchandise Resmi</h2>
-      <p>Koleksi merchandise eksklusif Jelajah Hutan</p>
-    </div>
-
-    <div class="merch-grid">
-      <div class="merch-card" data-merch="1">
-        <div class="merch-image">
-          <img src="images/KAS.png" alt="Kaos Jelajah Hutan">
-        </div>
-        <h4>Kaos Jelajah Hutan</h4>
-        <div class="merch-price">Rp 85.000</div>
-        <button class="merch-btn">
-          <i class="fas fa-shopping-cart"></i> Beli Sekarang
-        </button>
-      </div>
-
-      <div class="merch-card" data-merch="2">
-        <div class="merch-image">
-          <img src="imagestopi.jpeg" alt="Topi Jelajah Hutan">
-        </div>
-        <h4>Topi Jelajah Hutan</h4>
-        <div class="merch-price">Rp 45.000</div>
-        <button class="merch-btn">
-          <i class="fas fa-shopping-cart"></i> Beli Sekarang
-        </button>
-      </div>
-
-      <div class="merch-card" data-merch="3">
-        <div class="merch-image">
-          <img src="images/tumbler.jpg" alt="Tumbler Jelajah Hutan">
-        </div>
-        <h4>Tumbler Jelajah Hutan</h4>
-        <div class="merch-price">Rp 65.000</div>
-        <button class="merch-btn">
-          <i class="fas fa-shopping-cart"></i> Beli Sekarang
-        </button>
-      </div>
-
-      <div class="merch-card" data-merch="4">
-        <div class="merch-image">
-          <img src="images/pin1.jpg" alt="Pin Jelajah Hutan">
-        </div>
-        <h4>Pin Jelajah Hutan</h4>
-        <div class="merch-price">Rp 15.000</div>
-        <button class="merch-btn">
-          <i class="fas fa-shopping-cart"></i> Beli Sekarang
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== MODAL MERCHANDISE ========== -->
-  <div class="merch-modal" id="merchModal">
-    <div class="merch-modal-content">
-      <div class="merch-modal-close" id="merchModalClose">
-        <i class="fas fa-times"></i>
-      </div>
-      <div class="merch-modal-header">
-        <h3 id="merchModalTitle"></h3>
-        <p class="subtitle" id="merchModalSubtitle"></p>
-      </div>
-      <div class="merch-modal-body" id="merchModalBody"></div>
-    </div>
-  </div>
-
   <!-- ========== FOOTER ========== -->
   <footer>
     <div class="footer-content">
@@ -1687,21 +1378,6 @@
       </p>
     </div>
   </footer>
-
-  <!-- ===== POPUP FORM ===== -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <h3>Isi Data Pemesanan</h3>
-      <form id="orderForm">
-        <input type="text" id="buyerName" placeholder="Nama Lengkap" required>
-        <input type="text" id="buyerClass" placeholder="Kelas" required>
-        <input type="text" id="buyerBatch" placeholder="Angkatan" required>
-        <input type="number" id="quantity" placeholder="Jumlah" required>
-        <button type="submit">Kirim ke WhatsApp</button>
-        <button type="button" class="close-btn" id="closePopup">Batal</button>
-      </form>
-    </div>
-  </div>
 
   <!-- ========== FALLING LEAVES EFFECT ========== -->
   <div id="falling-leaves"></div>
@@ -1900,126 +1576,6 @@
       }
     };
 
-    // ========== DATA MERCHANDISE ==========
-    const merchData = {
-      1: {
-        title: "Kaos Jelajah Hutan",
-        subtitle: "Kaos eksklusif dengan desain khusus Jelajah Hutan 2025",
-        content: `
-          <div style="display: flex; flex-direction: column; gap: 25px;">
-            <div style="display: flex; gap: 25px; align-items: center;">
-              <div style="flex: 1;">
-                <img src="images/KAS.png" alt="Kaos Jelajah Hutan" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
-              </div>
-              <div style="flex: 1;">
-                <h4 style="color: var(--gold); margin-bottom: 10px;">Detail Produk</h4>
-                <ul>
-                  <li><strong>Bahan:</strong> Cotton Combed 30s</li>
-                  <li><strong>Warna:</strong> Hijau Hutan & Putih</li>
-                  <li><strong>Ukuran:</strong> S, M, L, XL</li>
-                  <li><strong>Harga:</strong> Rp 85.000</li>
-                </ul>
-                <button class="merch-btn" style="margin-top: 15px; width: 100%;" data-merch="1">
-                  <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                </button>
-              </div>
-            </div>
-            <div>
-              <h4>Deskripsi Produk</h4>
-              <p>Kaos eksklusif Jelajah Hutan 2025 dengan desain yang mencerminkan semangat konservasi hutan. Terbuat dari bahan cotton combed 30s yang nyaman dipakai, dengan sablon yang tahan lama. Cocok untuk kegiatan lapangan maupun sehari-hari.</p>
-            </div>
-          </div>
-        `
-      },
-      2: {
-        title: "Topi Jelajah Hutan",
-        subtitle: "Topi dengan logo resmi Jelajah Hutan 2025",
-        content: `
-          <div style="display: flex; flex-direction: column; gap: 25px;">
-            <div style="display: flex; gap: 25px; align-items: center;">
-              <div style="flex: 1;">
-                <img src="imagestopi.jpeg" alt="Topi Jelajah Hutan" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
-              </div>
-              <div style="flex: 1;">
-                <h4 style="color: var(--gold); margin-bottom: 10px;">Detail Produk</h4>
-                <ul>
-                  <li><strong>Bahan:</strong> Kanvas & Twill</li>
-                  <li><strong>Warna:</strong> Hijau, Khaki, Hitam</li>
-                  <li><strong>Ukuran:</strong> Adjustable (One Size)</li>
-                  <li><strong>Harga:</strong> Rp 45.000</li>
-                </ul>
-                <button class="merch-btn" style="margin-top: 15px; width: 100%;" data-merch="2">
-                  <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                </button>
-              </div>
-            </div>
-            <div>
-              <h4>Deskripsi Produk</h4>
-              <p>Topi dengan desain casual yang cocok untuk berbagai kegiatan outdoor. Dilengkapi dengan logo resmi Jelajah Hutan 2025 yang terpampang dengan jelas. Bahan yang digunakan nyaman dan tahan lama.</p>
-            </div>
-          </div>
-        `
-      },
-      3: {
-        title: "Tumbler Jelajah Hutan",
-        subtitle: "Tumbler ramah lingkungan dengan desain eksklusif",
-        content: `
-          <div style="display: flex; flex-direction: column; gap: 25px;">
-            <div style="display: flex; gap: 25px; align-items: center;">
-              <div style="flex: 1;">
-                <img src="images/tumbler.jpg" alt="Tumbler Jelajah Hutan" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
-              </div>
-              <div style="flex: 1;">
-                <h4 style="color: var(--gold); margin-bottom: 10px;">Detail Produk</h4>
-                <ul>
-                  <li><strong>Bahan:</strong> Stainless Steel</li>
-                  <li><strong>Kapasitas:</strong> 500ml</li>
-                  <li><strong>Fitur:</strong> Tahan Panas & Dingin</li>
-                  <li><strong>Harga:</strong> Rp 65.000</li>
-                </ul>
-                <button class="merch-btn" style="margin-top: 15px; width: 100%;" data-merch="3">
-                  <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                </button>
-              </div>
-            </div>
-            <div>
-              <h4>Deskripsi Produk</h4>
-              <p>Tumbler ramah lingkungan dengan desain eksklusif Jelajah Hutan 2025. Terbuat dari bahan stainless steel berkualitas tinggi yang dapat menjaga suhu minuman hingga 12 jam. Cocok untuk kegiatan di alam terbuka.</p>
-            </div>
-          </div>
-        `
-      },
-      4: {
-        title: "Pin Jelajah Hutan",
-        subtitle: "Pin koleksi dengan logo resmi Jelajah Hutan",
-        content: `
-          <div style="display: flex; flex-direction: column; gap: 25px;">
-            <div style="display: flex; gap: 25px; align-items: center;">
-              <div style="flex: 1;">
-                <img src="images/pin1.jpg" alt="Pin Jelajah Hutan" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
-              </div>
-              <div style="flex: 1;">
-                <h4 style="color: var(--gold); margin-bottom: 10px;">Detail Produk</h4>
-                <ul>
-                  <li><strong>Bahan:</strong> Enamel & Logam</li>
-                  <li><strong>Ukuran:</strong> 3cm x 3cm</li>
-                  <li><strong>Warna:</strong> Hijau, Emas, Putih</li>
-                  <li><strong>Harga:</strong> Rp 15.000</li>
-                </ul>
-                <button class="merch-btn" style="margin-top: 15px; width: 100%;" data-merch="4">
-                  <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                </button>
-              </div>
-            </div>
-            <div>
-              <h4>Deskripsi Produk</h4>
-              <p>Pin koleksi eksklusif dengan desain logo resmi Jelajah Hutan 2025. Terbuat dari bahan enamel berkualitas tinggi dengan detail yang rapi. Cocok untuk dikoleksi atau dipasang di tas, jaket, atau topi.</p>
-            </div>
-          </div>
-        `
-      }
-    };
-
     // ========== MENU TOGGLE ==========
     const menuToggle = document.getElementById('menuToggle');
     const sideMenu = document.getElementById('sideMenu');
@@ -2100,60 +1656,6 @@
     aboutModal.addEventListener('click', (e) => {
       if (e.target === aboutModal) {
         aboutModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-
-    // ========== MODAL MERCHANDISE ==========
-    const merchModal = document.getElementById('merchModal');
-    const merchModalClose = document.getElementById('merchModalClose');
-    const merchModalTitle = document.getElementById('merchModalTitle');
-    const merchModalSubtitle = document.getElementById('merchModalSubtitle');
-    const merchModalBody = document.getElementById('merchModalBody');
-
-    document.querySelectorAll('.merch-card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        // Mencegah event bubbling jika tombol beli diklik
-        if (e.target.classList.contains('merch-btn')) {
-          return;
-        }
-        
-        const merchId = this.getAttribute('data-merch');
-        const data = merchData[merchId];
-        
-        merchModalTitle.textContent = data.title;
-        merchModalSubtitle.textContent = data.subtitle;
-        merchModalBody.innerHTML = data.content;
-        
-        merchModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        // Tambahkan event listener untuk tombol beli di dalam modal
-        const modalBuyBtn = merchModalBody.querySelector('.merch-btn');
-        if (modalBuyBtn) {
-          modalBuyBtn.addEventListener('click', function() {
-            const merchId = this.getAttribute('data-merch');
-            const merchDataItem = merchData[merchId];
-            selectedItem = {
-              name: merchDataItem.title,
-              price: merchDataItem.content.match(/<strong>Harga:<\/strong> (.*?)<\/li>/)[1]
-            };
-            document.getElementById('popupOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            merchModal.classList.remove('active');
-          });
-        }
-      });
-    });
-
-    merchModalClose.addEventListener('click', () => {
-      merchModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-
-    merchModal.addEventListener('click', (e) => {
-      if (e.target === merchModal) {
-        merchModal.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
     });
@@ -2263,60 +1765,6 @@
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
-    });
-
-    // ========== MERCHANDISE ==========
-    let selectedItem = null;
-
-    document.querySelectorAll('.merch-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation(); // Mencegah event bubbling ke card
-        const card = this.closest('.merch-card');
-        const merchId = card.getAttribute('data-merch');
-        const merchDataItem = merchData[merchId];
-        
-        selectedItem = {
-          name: merchDataItem.title,
-          price: merchDataItem.content.match(/<strong>Harga:<\/strong> (.*?)<\/li>/)[1]
-        };
-        document.getElementById('popupOverlay').classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    document.getElementById('closePopup').addEventListener('click', function() {
-      document.getElementById('popupOverlay').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-
-    document.getElementById('popupOverlay').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const buyerName = document.getElementById('buyerName').value;
-      const buyerClass = document.getElementById('buyerClass').value;
-      const buyerBatch = document.getElementById('buyerBatch').value;
-      const quantity = document.getElementById('quantity').value;
-      
-      const phone = '6281393288135';
-      const message = encodeURIComponent(
-        `Halo, saya ingin memesan merchandise berikut:\n\n` +
-        `🛍️ *${selectedItem.name}*\n💰 Harga: ${selectedItem.price}\n📦 Jumlah: ${quantity}\n\n` +
-        `Berikut data saya:\n` +
-        `👤 Nama: ${buyerName}\n🏫 Kelas: ${buyerClass}\n🎓 Angkatan: ${buyerBatch}\n\n` +
-        `Mohon info lebih lanjut, terima kasih!`
-      );
-
-      window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-      document.getElementById('popupOverlay').classList.remove('active');
-      document.body.style.overflow = 'auto';
-      this.reset();
     });
 
     // ========== SHARE ==========
